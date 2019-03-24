@@ -1,4 +1,4 @@
-# Titulo del proyecto
+# Jeeflix
 
 Esta aplicación es un proyecto de tipo web, el cual tiene 
 como finalidad proveer al usuario un "catálogo" de peliculas y 
