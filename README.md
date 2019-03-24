@@ -1,6 +1,6 @@
 # Titulo del proyecto
 
-Esta aplicación es un proyecto de tipo web,el cual tiene 
+Esta aplicación es un proyecto de tipo web, el cual tiene 
 como finalidad proveer al usuario un "catálogo" de peliculas y 
 series con los que puede interactuar ya sea visualizando o desacargando
  en los equipos de de los usuarios.
