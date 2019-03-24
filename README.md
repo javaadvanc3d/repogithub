@@ -1,9 +1,10 @@
 # Jeeflix
 
-Esta aplicación es un proyecto de tipo web, el cual tiene 
-como finalidad proveer al usuario un "catálogo" de peliculas y 
-series con los que puede interactuar ya sea visualizando o desacargando
- en los equipos de de los usuarios.
+Esta aplicación es un proyecto Java tipo web, el cual tiene 
+como finalidad proveer al usuario un "catálogo" de películas y 
+series con los que puede interactuar ya sea visualizándolo en línea o descargando su contenido
+en el equipo local del usuario.
+
  
  ## Construido  con
  
@@ -15,7 +16,7 @@ series con los que puede interactuar ya sea visualizando o desacargando
 
 ## Lenguaje de Desarrollo
  
-* Java  - Version utlizada [Java 8](https://www.java.com/es/download/)
+* Java  - Version utilizada [Java 8](https://www.java.com/es/download/)
 
 
 ## Autores :
