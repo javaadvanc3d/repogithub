@@ -7,7 +7,6 @@ public class Puntuacion {
 	private Multimedia codigoMultimedia;
 	
 	public Puntuacion(int codigoPuntuacion, int valorPuntuacion, Multimedia codigoMultimedia) {
-		
 		this.codigoPuntuacion = codigoPuntuacion;
 		this.valorPuntuacion = valorPuntuacion;
 		this.codigoMultimedia = codigoMultimedia;

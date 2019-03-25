@@ -7,7 +7,6 @@ public class TipoMultimedia {
 	private String  nombreMultimedia;
 	
 	public TipoMultimedia(int codigoTipoMltimedia, String nombreMultimedia) {
-
 		this.codigoTipoMltimedia = codigoTipoMltimedia;
 		this.nombreMultimedia = nombreMultimedia;
 	}
