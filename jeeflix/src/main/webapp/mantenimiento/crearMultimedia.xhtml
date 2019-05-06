@@ -1,0 +1,67 @@
+<ui:composition
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      template="/templates/main/main-layout.xhtml">
+
+    <ui:define name="contenido">
+    <h:outputStylesheet name="css/index.css" />
+    
+     <div class="container">
+		    <div class="row">
+		    
+		    <div class="col-md-6">
+				<h3 class="dark-grey">Nueva Multimedia</h3>
+
+				<h:form>
+				
+					    <div class="form-group col-lg-12">
+							<label>Titulo</label>
+							<h:inputText value="#{multimediaCrearBean.multimedia.titulo}" class="form-control"/>
+						</div>
+						
+						<div class="form-group col-lg-12">
+							<label>Descripción</label>
+							<h:inputText value="#{multimediaCrearBean.multimedia.descripCorta}" class="form-control"/>
+						</div>
+						
+						<div class="form-group col-lg-12">
+							<label>Tipo</label>
+							<h:selectOneMenu
+								value="#{multimediaCrearBean.multimedia.tipo}" class="form-control">
+								<f:selectItem itemLabel="Seleccionar" itemValue="0" />
+								<f:selectItem itemLabel="Película" itemValue="1" />
+								<f:selectItem itemLabel="Serie" itemValue="2" />
+							</h:selectOneMenu>
+						</div>
+			
+						<div class="form-group col-lg-12">
+							<label>Género</label>
+							<h:selectOneMenu
+								value="#{multimediaCrearBean.multimedia.genero}" class="form-control">
+								<f:selectItem itemLabel="Seleccionar" itemValue="0" />
+								<f:selectItem itemLabel="Acción" itemValue="1" />
+								<f:selectItem itemLabel="Ciencia ficción" itemValue="2" />
+								<f:selectItem itemLabel="Comedia" itemValue="3" />
+								<f:selectItem itemLabel="Drama" itemValue="4" />
+							</h:selectOneMenu>
+						</div>
+						
+						<div class="form-group col-lg-12">
+							<label>Año de estreno</label>
+							<h:inputText value="#{multimediaCrearBean.multimedia.año}" class="form-control"/>
+						</div>
+						
+						<div class="form-group col-lg-12">
+							<h:commandButton action="#{multimediaCrearBean.crearMultimedia}" value="Registrar" styleClass="btn btn-primary"/>
+						</div>
+				</h:form>
+			  </div>
+
+		   </div>
+	</div>
+		
+	</ui:define>
+
+</ui:composition>

@@ -1,0 +1,68 @@
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<nav class="navbar navbar-inverse">
+	  <div class="container-fluid">
+	    <div class="navbar-header">
+	      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>                        
+	      </button>
+	      <a class="navbar-brand" href="/jeeflix">JeeFlix</a>
+	    </div>
+	    <div class="collapse navbar-collapse" id="myNavbar">
+	      <ul class="nav navbar-nav">
+	        <li class="active"><a href="/jeeflix">Home</a></li>
+	        
+	        <li class="dropdown">
+	          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Géneros<span class="caret"></span></a>
+	          <ul class="dropdown-menu">
+	            <li><a href="#">Acción </a></li>
+	            <li><a href="#">Ciencia ficción </a></li>
+	            <li><a href="#">Comedia </a></li>
+	            <li><a href="#">Drama </a></li>
+	          </ul>
+	        </li>
+	        
+	        <li class="dropdown">
+	          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Estrenos<span class="caret"></span></a>
+	          <ul class="dropdown-menu">
+	            <li><a href="#">Este Año </a></li>
+	            <li><a href="#">Año 2018</a></li>
+	            <li><a href="#">Año 2017</a></li>
+	            <li><a href="#">Año 2016</a></li>
+	            <li><a href="#">Otros...</a></li>
+	          </ul>
+	        </li>
+	        
+	        <li class="dropdown">
+	          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Mantenimiento<span class="caret"></span></a>
+	          <ul class="dropdown-menu">
+	            <li><h:link outcome="mantenimiento/mantMultimedia">Multimedia </h:link></li>
+	          </ul>
+	        </li>
+	      </ul>
+	      
+          <form id="mega-search" class="navbar-form navbar-right">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Película / Serie" />
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button">
+                            <i class="glyphicon glyphicon-search"></i>
+                        </button>
+                    </span>
+                </div>
+          </form>
+          
+	      <ul class="nav navbar-nav navbar-right">
+	        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Suscríbete</a></li>
+	        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+	      </ul>
+	    </div>
+	  </div>
+	</nav>
+
+</ui:composition>

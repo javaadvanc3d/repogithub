@@ -1,0 +1,69 @@
+<ui:composition
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      template="/templates/main/main-layout.xhtml">
+      
+      <ui:define name="contenido">
+      <h:outputStylesheet name="css/index.css" />
+      
+		 <div class="container">
+		    <div class="row">
+		       <div class="col-sm-7">
+		       
+		             <div class="panel-group">
+		                <div class="panel panel-default">
+		                  <div class="panel-heading-custom panel-heading">Mantenimiento Multimedia</div>
+		
+							  <h:panelGroup>
+								<h:dataTable value="#{multimediaBean.listaMultimedia}" var="multimedia" class="table table-responsive table-bordered table-striped">
+									<h:column>
+										<f:facet name="header">Id</f:facet>
+										#{multimedia.id}
+									</h:column>
+									<h:column>
+										<f:facet name="header">Título</f:facet>
+										#{multimedia.titulo}
+									</h:column>
+									<h:column>
+										<f:facet name="header">Tipo </f:facet>
+										#{multimedia.tipo eq '1' ? 'Película': 'Serie'}
+									</h:column>	
+									<h:column>
+										<f:facet name="header">Género </f:facet>
+										#{multimedia.genero eq '1' ? 'Acción': multimedia.genero eq '2' ? 'Ciencia ficción': multimedia.genero eq '3' ? 'Comedia': 'Drama'}
+									</h:column>
+									<h:column>
+										<f:facet name="header">Año </f:facet>
+										#{multimedia.año}
+									</h:column>
+									<h:column>
+										<f:facet name="header">Puntuación </f:facet>
+										#{multimedia.puntuacion}
+									</h:column>
+									
+									<h:column>
+										<f:facet name="header">Detalle</f:facet>
+										<h:link outcome="mantenimiento/multimediaDetalle">
+											<f:param name="id" value="#{multimedia.id}" />
+											Ver detalle
+										</h:link>
+									</h:column>
+								</h:dataTable>
+							 </h:panelGroup>							 
+		 
+		                </div>
+		             </div>
+		             
+		             <div class="pull-right">
+		                  <h:link outcome="crearMultimedia" styleClass="btn btn-default">+ Adicionar</h:link>
+			         </div>
+		         </div>
+
+		    </div>
+		 </div> <!-- /container -->
+ 	
+      </ui:define>
+
+</ui:composition>
