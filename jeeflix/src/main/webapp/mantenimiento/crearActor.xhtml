@@ -1,0 +1,90 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	template="/templates/main/main-layout.xhtml">
+
+	<ui:define name="contenido">
+		<h:outputStylesheet name="css/index.css" />
+		
+		<div class="container">
+		
+			<div class="row">
+
+				<div class="col-md-6">
+					<h3 class="dark-grey">Nuevo Actor</h3>
+
+					<h:form>
+
+						<div class="form-group col-lg-12">
+							<label>Nombre</label>
+							<h:inputText value="#{actorCrearBean.actor.nombre}"
+								class="form-control" />
+						</div>
+
+						<div class="form-group col-lg-12">
+							<label>Apellido Paterno</label>
+							<h:inputText value="#{actorCrearBean.actor.apePaterno}"
+								class="form-control" />
+						</div>
+						<div class="form-group col-lg-12">
+							<label>Apellido Materno</label>
+							<h:inputText value="#{actorCrearBean.actor.apeMaterno}"
+								class="form-control" />
+						</div>
+						
+						<div class="form-group col-lg-12">
+							<label>Nombre Artístico</label>
+							<h:inputText value="#{actorCrearBean.actor.nomArtistico}"
+								class="form-control" />
+						</div>
+
+						<div class="form-group col-lg-12" data-provide="datepicker">
+							<label>Fecha Nacimiento</label>
+							<div class="form-group col-lg-12 input-group date">
+								<h:inputText
+									value="#{actorCrearBean.actor.fecNacimientoFormato}"
+									class="form-control fechaNacimiento" />
+								<div class="input-group-addon">
+									<span class="glyphicon glyphicon-th"></span>
+								</div>
+							</div>
+
+						</div>
+						<div class="form-group col-lg-12">
+							<label>Edad</label>
+							<h:inputText value="#{actorCrearBean.actor.edad}"
+								class="form-control" />
+						</div>
+						<div class="form-group col-lg-12">
+							<label>Sexo</label>
+							<h:selectOneMenu value="#{actorCrearBean.actor.sexo}"
+								class="form-control">
+								<f:selectItem itemLabel="Seleccionar" itemValue="" />
+								<f:selectItem itemLabel="Masculino" itemValue="Masculino" />
+								<f:selectItem itemLabel="Femenino" itemValue="Femenino" />
+							</h:selectOneMenu>
+						</div>
+
+
+						<div class="form-group col-lg-12">
+							<h:commandButton action="#{actorCrearBean.crearActor}"
+								value="Registrar" styleClass="btn btn-primary" />
+						</div>
+					</h:form>
+				</div>
+
+			</div>
+			<script type="text/javascript">
+			
+			   $(function(){
+				   
+				   $('.fechaNacimiento').datepicker(); 
+			   });
+
+			 </script>
+		</div>
+
+	</ui:define>
+
+</ui:composition>

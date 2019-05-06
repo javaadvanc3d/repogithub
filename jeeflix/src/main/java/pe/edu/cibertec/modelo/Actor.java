@@ -8,9 +8,13 @@ public class Actor extends Persona{
 	private String nacionalidad;
 	private String foto;
 	
-	public Actor(String nombre, String apePaterno, String apeMaterno, Date fecNacimiento, int edad, String sexo,
+	public Actor() {
+		
+	}
+	
+	public Actor(Integer id,String nombre, String apePaterno, String apeMaterno, Date fecNacimiento, int edad, String sexo,
 			String nomArtistico, String nacionalidad, String foto) {
-		super(nombre, apePaterno, apeMaterno, fecNacimiento, edad, sexo);
+		super(id,nombre, apePaterno, apeMaterno, fecNacimiento, edad, sexo);
 		this.nomArtistico = nomArtistico;
 		this.nacionalidad = nacionalidad;
 		this.foto = foto;

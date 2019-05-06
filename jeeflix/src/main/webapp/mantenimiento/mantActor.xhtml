@@ -1,0 +1,58 @@
+<ui:composition
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      template="/templates/main/main-layout.xhtml">
+      
+      <ui:define name="contenido">
+      <h:outputStylesheet name="css/index.css" />
+      
+		 <div class="container">
+		    <div class="row">
+		       <div class="col-sm-7">
+		       
+		             <div class="panel-group">
+		                <div class="panel panel-default">
+		                  <div class="panel-heading-custom panel-heading">Mantenimiento Actor</div>
+		
+							  <h:panelGroup>
+								<h:dataTable value="#{actorBean.listaActor}" var="actor" class="table table-responsive table-bordered table-striped">
+									<h:column>
+										<f:facet name="header">Id</f:facet>
+										#{actor.id}
+									</h:column>
+									<h:column>
+										<f:facet name="header">Nombre Artístico</f:facet>
+										#{actor.nomArtistico}
+									</h:column>
+									<h:column>
+										<f:facet name="header">Nombres</f:facet>
+										#{actor.nombre}
+									</h:column>
+									<h:column>
+										<f:facet name="header">Apellidos</f:facet>
+										#{actor.apePaterno} #{actor.apeMaterno}
+									</h:column>
+									<h:column>
+										<f:facet name="header">Fecha Nacimiento</f:facet>
+										#{actor.fecNacimientoFormato}
+									</h:column>
+									
+								</h:dataTable>
+							 </h:panelGroup>							 
+		 
+		                </div>
+		             </div>
+		             
+		             <div class="pull-right">
+		                  <h:link outcome="crearActor" styleClass="btn btn-default">+ Adicionar</h:link>
+			         </div>
+		         </div>
+
+		    </div>
+		 </div> <!-- /container -->
+ 	
+      </ui:define>
+
+</ui:composition>
