@@ -1,18 +1,18 @@
 package pe.edu.cibertec.jsf.beans;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
-
-import pe.edu.cibertec.repositorio.impl.RepositorioMultimediaMemoriaImpl;
-import pe.edu.cibertec.servicio.MultimediaServicio;
-
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
 @ManagedBean(eager=true)
 @ApplicationScoped
 public class ConfiguracionAppBean {
-
-	private MultimediaServicio multimediaServicio;
+	
+	private EntityManagerFactory emf;
 
 	public ConfiguracionAppBean() {
 		System.out.println("Creando instancia de ConfiguracionAppBean");
@@ -20,15 +20,17 @@ public class ConfiguracionAppBean {
 
 	@PostConstruct
 	public void init() {
-		multimediaServicio = new MultimediaServicio(new RepositorioMultimediaMemoriaImpl());
+		emf = Persistence.createEntityManagerFactory("PUJpa"); // Referencia al persistence.xml
+		System.out.println("Inicio de ConfiguracionAppBean con EntityManagerFactory UNICO para toda la aplicacion");
 	}
-
-	public MultimediaServicio getMultimediaServicio() {
-		return multimediaServicio;
+	
+	@PreDestroy //Antes de destruir la instancia del @ManagedBean al apagar el servidor de aplicaciones, ejecutamos:
+	public void finish() {
+		emf.close();
 	}
-
-	public void setMultimediaServicio(MultimediaServicio multimediaServicio) {
-		this.multimediaServicio = multimediaServicio;
+	
+	public EntityManager getEntityManager() {
+		return emf.createEntityManager(); // Obtiene una instancia de EntityManager
 	}
-
+	
 }

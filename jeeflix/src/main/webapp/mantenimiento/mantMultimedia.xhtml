@@ -28,15 +28,15 @@
 									</h:column>
 									<h:column>
 										<f:facet name="header">Tipo </f:facet>
-										#{multimedia.tipo eq '1' ? 'Película': 'Serie'}
+										#{multimedia.tipo.nombre}
 									</h:column>	
 									<h:column>
 										<f:facet name="header">Género </f:facet>
-										#{multimedia.genero eq '1' ? 'Acción': multimedia.genero eq '2' ? 'Ciencia ficción': multimedia.genero eq '3' ? 'Comedia': 'Drama'}
+										#{multimedia.genero.nombre}
 									</h:column>
 									<h:column>
 										<f:facet name="header">Año </f:facet>
-										#{multimedia.año}
+										#{multimedia.anio}
 									</h:column>
 									<h:column>
 										<f:facet name="header">Puntuación </f:facet>
