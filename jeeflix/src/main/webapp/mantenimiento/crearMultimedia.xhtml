@@ -23,34 +23,32 @@
 						
 						<div class="form-group col-lg-12">
 							<label>Descripción</label>
-							<h:inputText value="#{multimediaCrearBean.multimedia.descripCorta}" class="form-control"/>
+							<h:inputText value="#{multimediaCrearBean.multimedia.desCorta}" class="form-control"/>
 						</div>
 						
 						<div class="form-group col-lg-12">
 							<label>Tipo</label>
 							<h:selectOneMenu
-								value="#{multimediaCrearBean.multimedia.tipo}" class="form-control">
+								value="#{multimediaCrearBean.multimedia.tipo.id}" class="form-control">
 								<f:selectItem itemLabel="Seleccionar" itemValue="0" />
-								<f:selectItem itemLabel="Película" itemValue="1" />
-								<f:selectItem itemLabel="Serie" itemValue="2" />
+								<f:selectItems value="#{multimediaCrearBean.listaTipoMultimedia}" var="tipo"
+                    						   itemValue="#{tipo.id}" itemLabel="#{tipo.nombre}" /> 
 							</h:selectOneMenu>
 						</div>
 			
 						<div class="form-group col-lg-12">
 							<label>Género</label>
 							<h:selectOneMenu
-								value="#{multimediaCrearBean.multimedia.genero}" class="form-control">
+								value="#{multimediaCrearBean.multimedia.genero.id}" class="form-control">
 								<f:selectItem itemLabel="Seleccionar" itemValue="0" />
-								<f:selectItem itemLabel="Acción" itemValue="1" />
-								<f:selectItem itemLabel="Ciencia ficción" itemValue="2" />
-								<f:selectItem itemLabel="Comedia" itemValue="3" />
-								<f:selectItem itemLabel="Drama" itemValue="4" />
+								<f:selectItems value="#{multimediaCrearBean.listaGenero}" var="genero"
+                    						   itemValue="#{genero.id}" itemLabel="#{genero.nombre}" /> 
 							</h:selectOneMenu>
 						</div>
 						
 						<div class="form-group col-lg-12">
 							<label>Año de estreno</label>
-							<h:inputText value="#{multimediaCrearBean.multimedia.año}" class="form-control"/>
+							<h:inputText value="#{multimediaCrearBean.multimedia.anio}" class="form-control"/>
 						</div>
 						
 						<div class="form-group col-lg-12">

@@ -13,11 +13,11 @@ public class MultimediaServicio {
 		this.repositorioMultimedia = repositorioMultimedia;
 	}
 
-	public List<Multimedia> obtenerMultimedias() {
-		return repositorioMultimedia.obtenerTodos();
-	}
-
-	public void agregarMultimedia(Multimedia multimedia) {
-		repositorioMultimedia.agregar(multimedia);
-	}
+//	public List<Multimedia> obtenerMultimedias() {
+//		return repositorioMultimedia.obtenerTodos();
+//	}
+//
+//	public void agregarMultimedia(Multimedia multimedia) {
+//		repositorioMultimedia.agregar(multimedia);
+//	}
 }
