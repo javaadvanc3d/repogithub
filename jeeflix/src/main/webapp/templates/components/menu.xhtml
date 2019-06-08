@@ -1,7 +1,9 @@
 <ui:composition
         xmlns="http://www.w3.org/1999/xhtml"
         xmlns:h="http://xmlns.jcp.org/jsf/html"
-        xmlns:ui="http://java.sun.com/jsf/facelets">
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 
 	<nav class="navbar navbar-inverse">
 	  <div class="container-fluid">
@@ -19,23 +21,27 @@
 	        
 	        <li class="dropdown">
 	          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Géneros<span class="caret"></span></a>
-	          <ul class="dropdown-menu">
-	            <li><a href="#">Acción </a></li>
-	            <li><a href="#">Ciencia ficción </a></li>
-	            <li><a href="#">Comedia </a></li>
-	            <li><a href="#">Drama </a></li>
-	          </ul>
+		          <ul class="dropdown-menu">
+			            <ui:repeat value="#{indexBean.listaGenero}" var="genero">  
+			                <li>
+			                     <h:link value="#{genero.nombre}" outcome="index">
+								      <f:param name="generoFromMenu" value="#{genero.id}" />
+								 </h:link>
+			                 </li>
+			            </ui:repeat>
+		          </ul>	
 	        </li>
 	        
 	        <li class="dropdown">
 	          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Estrenos<span class="caret"></span></a>
-	          <ul class="dropdown-menu">
-	            <li><a href="#">Año 2019</a></li>
-	            <li><a href="#">Año 2018</a></li>
-	            <li><a href="#">Año 2017</a></li>
-	            <li><a href="#">Año 2016</a></li>
-	            <li><a href="#">Otros...</a></li>
-	          </ul>
+		          <ul class="dropdown-menu">
+		            <li><h:link value="2015" outcome="index"> <f:param name="anioFromMenu" value="2015" /></h:link></li>
+		            <li><h:link value="2016" outcome="index"> <f:param name="anioFromMenu" value="2016" /></h:link></li>
+		            <li><h:link value="2017" outcome="index"> <f:param name="anioFromMenu" value="2017" /></h:link></li>
+		            <li><h:link value="2018" outcome="index"> <f:param name="anioFromMenu" value="2018" /></h:link></li>
+		            <li><h:link value="2019" outcome="index"> <f:param name="anioFromMenu" value="2019" /></h:link></li>
+		            <li><h:link value="Todos" outcome="index"> <f:param name="anioFromMenu" value="Todos" /></h:link></li>
+		          </ul>
 	        </li>
 	        
 	        <li class="dropdown">
@@ -44,8 +50,24 @@
 	            <li><h:link outcome="mantenimiento/mantMultimedia">Multimedia </h:link></li>
 	          </ul>
 	        </li>
+	        
 	      </ul>
 	      
+	      
+	      <h:form id="mega-search" styleClass="navbar-form navbar-right">
+	           <div class="input-group">
+                    <h:inputText  class="form-control" value="#{indexBean.tituloMenu}"  pt:placeholder="Película / Serie" /> 
+                    
+                    <span class="input-group-btn">
+	                    <h:commandButton id="btnsearch" action="#{indexBean.buscarMultimedia}" style="display: none"> <f:ajax render=":formMultimedia"/> </h:commandButton>
+	                    <button  type="submit" id="mega-search:btnsearch" name="mega-search:btnsearch" class="btn btn-default">
+	                            <i class="glyphicon glyphicon-search"></i> 
+	                    </button>
+                    </span>
+                </div>
+	      </h:form>
+	      
+	      <!-- 
           <form id="mega-search" class="navbar-form navbar-right">
                 <div class="input-group">
                     <input type="text" class="form-control" placeholder="Película / Serie" />
@@ -53,9 +75,12 @@
                         <button class="btn btn-default" type="button">
                             <i class="glyphicon glyphicon-search"></i>
                         </button>
+                        
+                        <h:commandButton value="Ver Detalle »" styleClass="btn btn-default"  action="#{indexBean.verDetalle(multimedia)}" />
+                        
                     </span>
                 </div>
-          </form>
+          </form>  -->
           
 	      <ul class="nav navbar-nav navbar-right">
 	        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Suscríbete</a></li>

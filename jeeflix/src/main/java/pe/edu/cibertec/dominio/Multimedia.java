@@ -7,10 +7,12 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 import pe.edu.cibertec.modelo.Entidad;
 
 @Entity
+@Table(name= "multimedia") 
 public class Multimedia extends Entidad{
 	
 	/* Todos estos campos deben ser mapeados en la Entidad Multimedia:

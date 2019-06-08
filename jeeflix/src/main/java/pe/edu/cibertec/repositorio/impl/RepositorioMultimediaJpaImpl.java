@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 
 import pe.edu.cibertec.dominio.Multimedia;
+import pe.edu.cibertec.dominio.filtro.FiltroMultimedia;
 import pe.edu.cibertec.repositorio.RepositorioMultimedia;
 
 
@@ -31,6 +32,26 @@ public class RepositorioMultimediaJpaImpl
 		return em.createQuery(
 				"SELECT m FROM multimedia m WHERE m.genero.id = :idGeneroMultimedia", Multimedia.class)
 				.setParameter("idGeneroMultimedia", idGeneroMultimedia)
+				.getResultList();
+	}
+
+
+	@Override
+	public List<Multimedia> obtenerPorFiltro(FiltroMultimedia filtroMultimedia) {
+		
+		if(filtroMultimedia==null) {
+			filtroMultimedia= new FiltroMultimedia();
+		}
+				
+		String jpql="SELECT m FROM Multimedia m "
+				   + "WHERE (:titulo IS '' OR m.titulo LIKE CONCAT('%', :titulo, '%'))"
+				   + "AND (:anio IS 0 OR m.anio = :anio)"
+				   + "AND (:idGenero IS 0 OR m.genero.id = :idGenero)";
+		
+		return em.createQuery( jpql, claseEntidad)
+				.setParameter("titulo", filtroMultimedia.getTitulo())
+				.setParameter("anio", filtroMultimedia.getAnio())
+				.setParameter("idGenero", filtroMultimedia.getIdGenero())
 				.getResultList();
 	}
 	

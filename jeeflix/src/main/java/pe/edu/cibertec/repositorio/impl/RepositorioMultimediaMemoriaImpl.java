@@ -3,6 +3,7 @@ package pe.edu.cibertec.repositorio.impl;
 import java.util.List;
 
 import pe.edu.cibertec.dominio.Multimedia;
+import pe.edu.cibertec.dominio.filtro.FiltroMultimedia;
 import pe.edu.cibertec.repositorio.RepositorioMultimedia;
 
 public class RepositorioMultimediaMemoriaImpl implements RepositorioMultimedia{
@@ -57,6 +58,13 @@ public class RepositorioMultimediaMemoriaImpl implements RepositorioMultimedia{
 
 	@Override
 	public List<Multimedia> obtenerPorGenero(Integer idGeneroMultimedia) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public List<Multimedia> obtenerPorFiltro(FiltroMultimedia filtroMultimedia) {
 		// TODO Auto-generated method stub
 		return null;
 	}

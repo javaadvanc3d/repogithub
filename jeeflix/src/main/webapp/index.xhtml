@@ -17,74 +17,109 @@
 	        </div>
 	      </div>
       
+      
           <div class="container">
-	      <div class="row">
-   
-	        <div class="col-md-4">
-	            <div class="list mb-3">
-	                <div class="list-header">
-	                    <a href="#" class="list-header-image">
-	                    	<h:graphicImage library="img" name="movie_avengers_endgame.jpg"/>
-	                    </a>
-	                </div>
-	                <div class="list-content">
-	                    <h2><a href="#" class="text-black">Avengers Endgame</a></h2> 
-	                    <span class="list-meta">
-	                    	<span class="list-meta-item"><i class="fa fa-clock-o"></i> 2019</span> 
-	                    	<a href="#" class="list-meta-item"><i class="fa fa-star"></i> 9.55</a>
-	                    </span>
-	                    <p>
-							Película de superhéroes estadounidense de 2019 basada en el grupo los Vengadores de Marvel Comics.</p>
-	                    <h:form>
-			               <p> <h:commandButton value="Ver Detalle »" styleClass="btn btn-default"/> </p>
-		                </h:form>
-	                </div>
-	            </div>
-	        </div>
-	        
-	        <div class="col-md-4">
-	            <div class="list mb-3">
-	                <div class="list-header">
-	                    <a href="#" class="list-header-image">
-	                    	<h:graphicImage library="img" name="movie_stranger_things.jpg"/>
-	                    </a>
-	                </div>
-	                <div class="list-content">
-	                    <h2><a href="#" class="text-black">Stranger Things</a></h2> 
-	                    <span class="list-meta">
-	                    	<span class="list-meta-item"><i class="fa fa-clock-o"></i> 2016</span> 
-	                    	<a href="#" class="list-meta-item"><i class="fa fa-star"></i> 8.13</a>
-	                    </span>
-	                    <p>
-							Cuando un niño pequeño desaparece, una pequeña ciudad descubre un misterio que involucra a la ciudad.</p>
-	                    <h:form>
-			               <p> <h:commandButton value="Ver Detalle »" styleClass="btn btn-default"/> </p>
-		                </h:form>
-	                </div>
-	            </div>
-	        </div>
-	        
-	        <div class="col-md-4">
-	            <div class="list mb-3">
-	                <div class="list-header">
-	                    <a href="#" class="list-header-image">
-	                    	<h:graphicImage library="img" name="movie_lethal_weapon.jpg"/>
-	                    </a>
-	                </div>
-	                <div class="list-content">
-	                    <h2><a href="#" class="text-black">Lethal Weapon</a></h2> 
-	                    <span class="list-meta">
-	                    	<span class="list-meta-item"><i class="fa fa-clock-o"></i> 2016</span> 
-	                    	<a href="#" class="list-meta-item"><i class="fa fa-star"></i> 7.26</a>
-	                    </span>
-	                    <p>Un ex miembro de Navy SEAL un poco desquiciado consigue un trabajo como oficial de policía en Los Ángeles.</p>
-	                    <h:form>
-			               <p> <h:commandButton value="Ver Detalle »" styleClass="btn btn-default"/> </p>
-		                </h:form>
-	                </div>
-	            </div>
-	        </div><br/>
-	      </div>
+		      <div class="row">
+	      
+	           <h:form id="formMultimedia">
+			        <ui:repeat value="#{indexBean.listaMultimedia}" var="multimedia">  
+			        <!-- <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">  --> 
+			      	     <div class="col-md-4 col-sm-6 col-xs-12">
+			      	         <div class="list mb-3" style="margin-bottom: 30px !important;">
+				                <div class="list-header">
+				                    <a href="#" class="list-header-image">
+				                    	<!-- <h:graphicImage library="img" name="movie_avengers_endgame.jpg"/> --> 
+				                    	     <h:graphicImage library="img" name="#{multimedia.portada ne null? multimedia.portada : 'movie_caratula_temp.jpg'}"/>
+				                    </a>
+				                </div>
+				                <div class="list-content">
+				                    <a href="#" class="text-black" style="font-size: 18px !important;">#{multimedia.titulo}</a>
+				                    <span class="list-meta">
+				                    	<span class="list-meta-item"><i class="fa fa-clock-o"></i> #{multimedia.anio}</span> 
+				                    	<a href="#" class="list-meta-item"><i class="fa fa-star"></i> #{multimedia.puntuacion}</a>
+				                    </span>
+				                    
+				                    <p style="font-size: 12px !important;"> #{multimedia.desCorta}</p> 
+				                    <h:form>
+						               <p> <h:commandButton value="Ver Detalle »" styleClass="btn btn-default"/> </p>
+					                </h:form> 
+				                </div>
+				             </div>
+				        </div>
+				    </ui:repeat>
+			    </h:form>
+			    
+			    <h:outputLabel  class="text-black" style="margin-bottom: 10px !important;" value="No se encontraron resultados en la búsqueda..." rendered="#{indexBean.listaMultimedia.size() eq 0 }"/>
+	   
+	   <!--
+	            https://www.cubicfactory.com/bootstrap-entender-el-modelo-de-rejilla/
+	   
+		        <div class="col-md-4">
+		            <div class="list mb-3">
+		                <div class="list-header">
+		                    <a href="#" class="list-header-image">
+		                    	<h:graphicImage library="img" name="movie_avengers_endgame.jpg"/>
+		                    </a>
+		                </div>
+		                <div class="list-content">
+		                    <h2><a href="#" class="text-black">Avengers Endgame</a></h2> 
+		                    <span class="list-meta">
+		                    	<span class="list-meta-item"><i class="fa fa-clock-o"></i> 2019</span> 
+		                    	<a href="#" class="list-meta-item"><i class="fa fa-star"></i> 9.55</a>
+		                    </span>
+		                    <p>
+								Película de superhéroes estadounidense de 2019 basada en el grupo los Vengadores de Marvel Comics.</p>
+		                    <h:form>
+				               <p> <h:commandButton value="Ver Detalle »" styleClass="btn btn-default"/> </p>
+			                </h:form>
+		                </div>
+		            </div>
+		        </div>
+		        
+		        <div class="col-md-4">
+		            <div class="list mb-3">
+		                <div class="list-header">
+		                    <a href="#" class="list-header-image">
+		                    	<h:graphicImage library="img" name="movie_stranger_things.jpg"/>
+		                    </a>
+		                </div>
+		                <div class="list-content">
+		                    <h2><a href="#" class="text-black">Stranger Things</a></h2> 
+		                    <span class="list-meta">
+		                    	<span class="list-meta-item"><i class="fa fa-clock-o"></i> 2016</span> 
+		                    	<a href="#" class="list-meta-item"><i class="fa fa-star"></i> 8.13</a>
+		                    </span>
+		                    <p>
+								Cuando un niño pequeño desaparece, una pequeña ciudad descubre un misterio que involucra a la ciudad.</p>
+		                    <h:form>
+				               <p> <h:commandButton value="Ver Detalle »" styleClass="btn btn-default"/> </p>
+			                </h:form>
+		                </div>
+		            </div>
+		        </div>
+		        
+		        <div class="col-md-4">
+		            <div class="list mb-3">
+		                <div class="list-header">
+		                    <a href="#" class="list-header-image">
+		                    	<h:graphicImage library="img" name="movie_lethal_weapon.jpg"/>
+		                    </a>
+		                </div>
+		                <div class="list-content">
+		                    <h2><a href="#" class="text-black">Lethal Weapon</a></h2> 
+		                    <span class="list-meta">
+		                    	<span class="list-meta-item"><i class="fa fa-clock-o"></i> 2016</span> 
+		                    	<a href="#" class="list-meta-item"><i class="fa fa-star"></i> 7.26</a>
+		                    </span>
+		                    <p>Un ex miembro de Navy SEAL un poco desquiciado consigue un trabajo como oficial de policía en Los Ángeles.</p>
+		                    <h:form>
+				               <p> <h:commandButton value="Ver Detalle »" styleClass="btn btn-default"/> </p>
+			                </h:form>
+		                </div>
+		            </div>
+		        </div><br/>
+  		-->	        
+	      	</div>
 	      </div>
       
 	  </ui:define>
