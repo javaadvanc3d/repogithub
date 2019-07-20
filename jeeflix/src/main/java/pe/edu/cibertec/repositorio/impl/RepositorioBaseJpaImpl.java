@@ -5,6 +5,7 @@ import java.lang.reflect.Type;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
@@ -15,12 +16,15 @@ import pe.edu.cibertec.repositorio.RepositorioBase;
 public class RepositorioBaseJpaImpl<E extends Entidad>
 	implements RepositorioBase<E> {
 
-	protected EntityManager em;
+	@PersistenceContext
+	protected EntityManager em; // Importante!
+	
 	protected Class<E> claseEntidad;
 
 	@SuppressWarnings("unchecked")
-	public RepositorioBaseJpaImpl(EntityManager em) {
-		this.em = em;
+	////////public RepositorioBaseJpaImpl(EntityManager em) {
+	public RepositorioBaseJpaImpl() {
+		/////////////this.em = em;
 		Type type = getClass().getGenericSuperclass();
         while (!(type instanceof ParameterizedType) || ((ParameterizedType) type).getRawType() != RepositorioBaseJpaImpl.class) {
             if (type instanceof ParameterizedType) {

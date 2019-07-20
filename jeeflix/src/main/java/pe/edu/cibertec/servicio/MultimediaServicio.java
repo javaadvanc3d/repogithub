@@ -2,22 +2,12 @@ package pe.edu.cibertec.servicio;
 
 import java.util.List;
 
-import pe.edu.cibertec.modelo.Multimedia;
-import pe.edu.cibertec.repositorio.RepositorioMultimedia;
+import pe.edu.cibertec.dominio.Multimedia;
+import pe.edu.cibertec.dominio.filtro.FiltroMultimedia;
 
-public class MultimediaServicio {
-
-	private final RepositorioMultimedia repositorioMultimedia;
-
-	public MultimediaServicio(RepositorioMultimedia repositorioMultimedia) {
-		this.repositorioMultimedia = repositorioMultimedia;
-	}
-
-//	public List<Multimedia> obtenerMultimedias() {
-//		return repositorioMultimedia.obtenerTodos();
-//	}
-//
-//	public void agregarMultimedia(Multimedia multimedia) {
-//		repositorioMultimedia.agregar(multimedia);
-//	}
+public interface MultimediaServicio extends MantenimientoServicioBase<Multimedia>{
+	
+	public List<Multimedia> obtenerPorTipo(Integer idTipoMultimedia);
+	public List<Multimedia> obtenerPorGenero(Integer idGeneroMultimedia);
+	public List<Multimedia> obtenerPorFiltro(FiltroMultimedia filtroMultimedia);
 }

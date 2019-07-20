@@ -2,21 +2,25 @@ package pe.edu.cibertec.repositorio.impl;
 
 import java.util.List;
 
-import javax.persistence.EntityManager;
+import org.springframework.stereotype.Repository;
 
 import pe.edu.cibertec.dominio.Multimedia;
 import pe.edu.cibertec.dominio.filtro.FiltroMultimedia;
 import pe.edu.cibertec.repositorio.RepositorioMultimedia;
 
-
+@Repository
 public class RepositorioMultimediaJpaImpl
 	extends RepositorioBaseJpaImpl<Multimedia>
 	implements RepositorioMultimedia {
 
-	public RepositorioMultimediaJpaImpl(EntityManager em) {
+	/*public RepositorioMultimediaJpaImpl(EntityManager em) {
 		super(em);
-	}
+	}*/
+	
 
+    public RepositorioMultimediaJpaImpl() {
+		
+	}
 	
 	@Override
 	public List<Multimedia> obtenerPorTipo(Integer idTipoMultimedia) {

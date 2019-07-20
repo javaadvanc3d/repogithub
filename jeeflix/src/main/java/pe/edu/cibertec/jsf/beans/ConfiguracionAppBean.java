@@ -12,7 +12,7 @@ import javax.persistence.Persistence;
 @ApplicationScoped
 public class ConfiguracionAppBean {
 	
-	private EntityManagerFactory emf;
+	/*private EntityManagerFactory emf;
 
 	public ConfiguracionAppBean() {
 		System.out.println("Creando instancia de ConfiguracionAppBean");
@@ -31,6 +31,6 @@ public class ConfiguracionAppBean {
 	
 	public EntityManager getEntityManager() {
 		return emf.createEntityManager(); // Obtiene una instancia de EntityManager
-	}
+	}*/
 	
 }
