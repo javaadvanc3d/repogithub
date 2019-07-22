@@ -46,7 +46,9 @@ public class IndexBean {
 	private ConfiguracionAppBean configuracionAppBean;***/
 	
 	
+	
 	public IndexBean(MultimediaServicio multimediaServicio, GeneroServicio generoServicio) { // Inyectado desde Spring
+		
 		this.multimediaServicio= multimediaServicio;
 		this.generoServicio = generoServicio;
 		ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
