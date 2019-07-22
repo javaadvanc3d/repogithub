@@ -39,8 +39,9 @@ public class MultimediaCrearBean {
 	private ConfiguracionAppBean configuracionAppBean;****/
 
 	public MultimediaCrearBean(MultimediaServicio multimediaServicio, TipoMultimediaServicio tipoMultimediaServicio, GeneroServicio generoServicio) { // Inyectado desde Spring
-		this.multimediaServicio= multimediaServicio;
+
 		this.tipoMultimediaServicio =tipoMultimediaServicio;
+		this.multimediaServicio= multimediaServicio;
 		this.generoServicio =generoServicio;
 		multimedia = new Multimedia();
 		multimedia.setTipo(new TipoMultimedia());
