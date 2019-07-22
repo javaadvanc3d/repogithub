@@ -9,30 +9,39 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.persistence.EntityManager;
 
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+
 import pe.edu.cibertec.dominio.Genero;
 import pe.edu.cibertec.dominio.Multimedia;
 import pe.edu.cibertec.dominio.TipoMultimedia;
-import pe.edu.cibertec.repositorio.RepositorioGenero;
-import pe.edu.cibertec.repositorio.RepositorioMultimedia;
-import pe.edu.cibertec.repositorio.RepositorioTipoMultimedia;
-import pe.edu.cibertec.repositorio.impl.RepositorioGeneroJpaImpl;
-import pe.edu.cibertec.repositorio.impl.RepositorioMultimediaJpaImpl;
-import pe.edu.cibertec.repositorio.impl.RepositorioTipoMultimediaJpaImpl;
+import pe.edu.cibertec.servicio.GeneroServicio;
+import pe.edu.cibertec.servicio.MultimediaServicio;
+import pe.edu.cibertec.servicio.TipoMultimediaServicio;
 
 
-@ManagedBean
-@RequestScoped
+//@ManagedBean
+//@RequestScoped
+
+@Component
+@Scope("request")
 public class MultimediaCrearBean {
 
 	private Multimedia multimedia;
+	private MultimediaServicio multimediaServicio;
+	private TipoMultimediaServicio tipoMultimediaServicio;
+	private GeneroServicio generoServicio;
 	
 	private List<TipoMultimedia> listaTipoMultimedia;
 	private List<Genero> listaGenero;
 	
-	@ManagedProperty(value="#{configuracionAppBean}")
-	private ConfiguracionAppBean configuracionAppBean;
+	/****@ManagedProperty(value="#{configuracionAppBean}")
+	private ConfiguracionAppBean configuracionAppBean;****/
 
-	public MultimediaCrearBean() {
+	public MultimediaCrearBean(MultimediaServicio multimediaServicio, TipoMultimediaServicio tipoMultimediaServicio, GeneroServicio generoServicio) { // Inyectado desde Spring
+		this.multimediaServicio= multimediaServicio;
+		this.tipoMultimediaServicio =tipoMultimediaServicio;
+		this.generoServicio =generoServicio;
 		multimedia = new Multimedia();
 		multimedia.setTipo(new TipoMultimedia());
 		multimedia.setGenero(new Genero());
@@ -46,43 +55,51 @@ public class MultimediaCrearBean {
 	public void init() {
 		cargaListaTipoMultimedia();
 		cargaListaGenero();
-	}
+	} 
 	
 	
 	public void cargaListaTipoMultimedia() {
-		EntityManager em = configuracionAppBean.getEntityManager(); // Siempre a nivel de metodo, No a nivel de clase!
+		System.out.println("->cargaListaTipoMultimedia():::");
+		/*****EntityManager em = configuracionAppBean.getEntityManager(); // Siempre a nivel de metodo, No a nivel de clase!
 		
 		try {
 			RepositorioTipoMultimedia tipoMultimedia= new RepositorioTipoMultimediaJpaImpl(em);
 			listaTipoMultimedia = tipoMultimedia.obtenerTodos(); 
 		} finally {
 			em.close();
-		}
+		}****/
+		
+		System.out.println("*tipoMultimediaServicio: "+tipoMultimediaServicio);
+		listaTipoMultimedia = tipoMultimediaServicio.obtenerTodos();
 	}
 	
 	public void cargaListaGenero() {
-		EntityManager em = configuracionAppBean.getEntityManager(); // Siempre a nivel de metodo, No a nivel de clase!
+		/****EntityManager em = configuracionAppBean.getEntityManager(); // Siempre a nivel de metodo, No a nivel de clase!
 		
 		try {
 			RepositorioGenero genero = new RepositorioGeneroJpaImpl(em); 
 			listaGenero = genero.obtenerTodos();
 		} finally {
 			em.close();
-		}
+		}****/
+		
+		listaGenero = generoServicio.obtenerTodos();
 	}
 	
 	public String crearMultimedia() {
-		EntityManager em = configuracionAppBean.getEntityManager(); // Siempre a nivel de metodo, No a nivel de clase!
+		//////EntityManager em = configuracionAppBean.getEntityManager(); // Siempre a nivel de metodo, No a nivel de clase!
 		
 		try {
 			
 			if(validarCampos()) {
-				em.getTransaction().begin();
+				
+				multimediaServicio.agregar(multimedia);
+				/*em.getTransaction().begin();
 				
 					RepositorioMultimedia repositorioMultimedia = new RepositorioMultimediaJpaImpl(em);
 					repositorioMultimedia.agregar(multimedia);
 			
-				em.getTransaction().commit();
+				em.getTransaction().commit();*/
 				
 				return "/mantenimiento/mantMultimedia?faces-redirect=true";
 			}
@@ -90,7 +107,7 @@ public class MultimediaCrearBean {
 		}catch (Exception e) {
 			e.printStackTrace();
 		}finally {
-			em.close();
+			///////em.close();
 		}
 		
 		return "#";
@@ -112,9 +129,9 @@ public class MultimediaCrearBean {
 		this.multimedia = multimedia;
 	}
 
-	public void setConfiguracionAppBean(ConfiguracionAppBean configuracionAppBean) {
+	/*****************public void setConfiguracionAppBean(ConfiguracionAppBean configuracionAppBean) {
 		this.configuracionAppBean = configuracionAppBean;
-	}
+	}*****************/
 
 	public List<TipoMultimedia> getListaTipoMultimedia() {
 		return listaTipoMultimedia;

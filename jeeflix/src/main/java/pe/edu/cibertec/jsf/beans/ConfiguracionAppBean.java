@@ -8,8 +8,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-@ManagedBean(eager=true)
+/*@ManagedBean(eager=true)
 @ApplicationScoped
+*/
 public class ConfiguracionAppBean {
 	
 	/*private EntityManagerFactory emf;

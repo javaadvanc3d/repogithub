@@ -10,6 +10,9 @@ import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.persistence.EntityManager;
 
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+
 import pe.edu.cibertec.dominio.Genero;
 import pe.edu.cibertec.dominio.Multimedia;
 import pe.edu.cibertec.dominio.filtro.FiltroMultimedia;
@@ -17,9 +20,16 @@ import pe.edu.cibertec.repositorio.RepositorioGenero;
 import pe.edu.cibertec.repositorio.RepositorioMultimedia;
 import pe.edu.cibertec.repositorio.impl.RepositorioGeneroJpaImpl;
 import pe.edu.cibertec.repositorio.impl.RepositorioMultimediaJpaImpl;
+import pe.edu.cibertec.servicio.GeneroServicio;
+import pe.edu.cibertec.servicio.MultimediaServicio;
+import pe.edu.cibertec.servicio.TipoMultimediaServicio;
 
-@ManagedBean
-@ViewScoped
+/////@ManagedBean
+/////@ViewScoped
+
+
+@Component
+@Scope("customView")
 public class IndexBean {
 	
 	private List<Multimedia> listaMultimedia;
@@ -28,12 +38,17 @@ public class IndexBean {
 	private String anioMenu;
 	private String tituloMenu;
 	
+	private MultimediaServicio multimediaServicio;
+	private GeneroServicio generoServicio;
+
 	
-	@ManagedProperty(value="#{configuracionAppBean}")
-	private ConfiguracionAppBean configuracionAppBean;
+	/***@ManagedProperty(value="#{configuracionAppBean}")
+	private ConfiguracionAppBean configuracionAppBean;***/
 	
 	
-	public IndexBean() {
+	public IndexBean(MultimediaServicio multimediaServicio, GeneroServicio generoServicio) { // Inyectado desde Spring
+		this.multimediaServicio= multimediaServicio;
+		this.generoServicio = generoServicio;
 		ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
 	    generoMenu = ec.getRequestParameterMap().get("generoFromMenu");
 	    anioMenu = ec.getRequestParameterMap().get("anioFromMenu");
@@ -47,33 +62,39 @@ public class IndexBean {
 	}
 	
 	public void cargarMultimedia() {
-		EntityManager em = configuracionAppBean.getEntityManager();
+		/*EntityManager em = configuracionAppBean.getEntityManager();
 		RepositorioMultimedia repoMultimedia = new RepositorioMultimediaJpaImpl(em);
+		RepositorioMultimedia repoMultimedia = new RepositorioMultimediaJpaImpl();*/
+		
 		try {
 			 FiltroMultimedia filtroMultimedia = new FiltroMultimedia();
 			 filtroMultimedia.setTitulo(tituloMenu!=null && !tituloMenu.isEmpty()? tituloMenu: "");
 			 filtroMultimedia.setAnio(anioMenu!=null && !anioMenu.equals("Todos")? Integer.parseInt(anioMenu): 0);
 			 filtroMultimedia.setIdGenero(generoMenu!=null? Integer.parseInt(generoMenu): 0);
-			 listaMultimedia = repoMultimedia.obtenerPorFiltro(filtroMultimedia);
-			
+			 listaMultimedia = multimediaServicio.obtenerPorFiltro(filtroMultimedia);    ///////repoMultimedia.obtenerPorFiltro(filtroMultimedia);
+			 System.out.println("*listaMultimedia: "+listaMultimedia.size());
 		} finally {
-			em.close();
+			//////em.close();
 		}
 	}
 	
 	
 	public void cargaListaGeneroMenu() {
-		EntityManager em = configuracionAppBean.getEntityManager(); // Siempre a nivel de metodo, No a nivel de clase!
+		/////////////EntityManager em = configuracionAppBean.getEntityManager(); // Siempre a nivel de metodo, No a nivel de clase!
 		
 		try {
-			RepositorioGenero genero = new RepositorioGeneroJpaImpl(em);
-			listaGenero = genero.obtenerTodos();
+			///////RepositorioGenero genero = new RepositorioGeneroJpaImpl(em);
+			///RepositorioGenero genero = new RepositorioGeneroJpaImpl();
+			///listaGenero = genero.obtenerTodos();
+			
+			listaGenero= generoServicio.obtenerTodos();
+			
 			Genero gen = new Genero();
 			gen.setId(0);
 			gen.setNombre("Todos");
 			listaGenero.add(gen);
 		} finally {
-			em.close();
+			///////////em.close();
 		}
 	}
 	
@@ -89,14 +110,16 @@ public class IndexBean {
 		FiltroMultimedia filtroMultimedia = new FiltroMultimedia();
 		filtroMultimedia.setTitulo(tituloMenu);
 		
-		EntityManager em = configuracionAppBean.getEntityManager(); // Siempre a nivel de metodo, No a nivel de clase!
+		/******EntityManager em = configuracionAppBean.getEntityManager(); // Siempre a nivel de metodo, No a nivel de clase!
 		
 		try {
 			RepositorioMultimedia repoMultimedia = new RepositorioMultimediaJpaImpl(em);
 			listaMultimedia = repoMultimedia.obtenerPorFiltro(filtroMultimedia);
 		} finally {
 			em.close();
-		}
+		}****/
+		
+		listaMultimedia = multimediaServicio.obtenerPorFiltro(filtroMultimedia);
 	}
 	
 	
@@ -116,9 +139,9 @@ public class IndexBean {
 		this.listaMultimedia = listaMultimedia;
 	}
 
-	public void setConfiguracionAppBean(ConfiguracionAppBean configuracionAppBean) {
+	/****public void setConfiguracionAppBean(ConfiguracionAppBean configuracionAppBean) {
 		this.configuracionAppBean = configuracionAppBean;
-	}
+	}****/
 
 	public String getGeneroMenu() {
 		return generoMenu;
