@@ -54,6 +54,8 @@
 						<div class="form-group col-lg-12">
 							<h:commandButton action="#{multimediaCrearBean.crearMultimedia}" value="Registrar" styleClass="btn btn-primary"/>
 						</div>
+						
+						 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 				</h:form>
 			  </div>
 

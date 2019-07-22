@@ -65,6 +65,7 @@
 	                    </button>
                     </span>
                 </div>
+                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 	      </h:form>
 	      
 	      <!-- 
@@ -84,7 +85,7 @@
           
 	      <ul class="nav navbar-nav navbar-right">
 	        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Suscríbete</a></li>
-	        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+	        <li><a href="#{request.contextPath}/login.xhtml"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
 	      </ul>
 	    </div>
 	  </div>

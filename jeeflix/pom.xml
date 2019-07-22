@@ -122,11 +122,25 @@
 			<version>3.3.1</version>
 		</dependency>
 
+
 		<!-- Integracion con Spring Web -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-web</artifactId>
 			<version>${spring.version}</version>
+		</dependency>
+		
+		
+		<!-- Integracion con Spring Security -->
+		<dependency>
+		    <groupId>org.springframework.security</groupId>
+		    <artifactId>spring-security-web</artifactId>
+		    <version>5.1.5.RELEASE</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.springframework.security</groupId>
+		    <artifactId>spring-security-config</artifactId>
+		    <version>5.1.5.RELEASE</version>
 		</dependency>
 
 
