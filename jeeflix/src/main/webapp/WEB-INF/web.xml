@@ -5,6 +5,31 @@
 	<welcome-file-list>
 		<welcome-file>index.xhtml</welcome-file>
 	</welcome-file-list>
+	
+	   <!-- Spring -->
+	   <!-- Variable Global de la aplicacion Web para indicar el archivo xml donde se encuentra la configuracion de Spring  -->
+	   <context-param>
+	      <param-name>contextConfigLocation</param-name>
+	      <param-value>/WEB-INF/applicationContext.xml</param-value>
+	   </context-param>
+	   
+	   <!-- Clase que implememta la Interfaz ServletContyextListener(Cuando se prende o apaga la aplicacion) Componente de Spring Web que crea un ServletContextListener. 
+	        Esta clase va a crear el ApplicationContext ctx y lo registrara dentro de ServletContext de la Aplicacion
+	        para que el objeto ctx sea global y unico a nivel de la aplicacion -  Se Ejecuta 1ro  -->
+	   <listener>
+	     <listener-class>
+	        org.springframework.web.context.ContextLoaderListener
+	     </listener-class>
+	   </listener>
+	   
+	    <!-- Listener que se activa cuando se solicita el Context, para porder Inyectar las dependencia en la aplicacion -->
+	    <listener>
+	     <listener-class>
+	       org.springframework.web.context.request.RequestContextListener
+	     </listener-class>
+	   </listener>
+	
+	
 
     <!-- Jsf -->
     <servlet>
@@ -16,6 +41,7 @@
 		<servlet-name>FacesServlet</servlet-name>
 		<url-pattern>*.xhtml</url-pattern>
 	</servlet-mapping>
+	
 
 	<!-- web fonts -->
     <mime-mapping>

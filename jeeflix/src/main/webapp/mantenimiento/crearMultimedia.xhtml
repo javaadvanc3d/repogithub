@@ -18,12 +18,12 @@
 				
 					    <div class="form-group col-lg-12">
 							<label>Titulo</label>
-							<h:inputText value="#{multimediaCrearBean.multimedia.titulo}" class="form-control"/>
+							<h:inputText value="#{multimediaCrearBean.multimedia.titulo}" class="form-control" maxlength="50"/>
 						</div>
 						
 						<div class="form-group col-lg-12">
 							<label>Descripción</label>
-							<h:inputText value="#{multimediaCrearBean.multimedia.desCorta}" class="form-control"/>
+							<h:inputText value="#{multimediaCrearBean.multimedia.desCorta}" class="form-control" maxlength="120"/>
 						</div>
 						
 						<div class="form-group col-lg-12">
@@ -54,6 +54,8 @@
 						<div class="form-group col-lg-12">
 							<h:commandButton action="#{multimediaCrearBean.crearMultimedia}" value="Registrar" styleClass="btn btn-primary"/>
 						</div>
+						
+						 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 				</h:form>
 			  </div>
 
